@@ -1,0 +1,17 @@
+build
+.idea
+.DS_Store
+.Trashes
+DerivedData
+Pods
+*.lock
+Build
+*.pbxuser
+xcuserdata
+xcshareddata
+*.xccheckout
+!default.pbxuser
+xcschememanagement.plist
+tg-remote-client-ios.xcodeproj/project.xcworkspace/
+tg-remote-client-ios.xcodeproj/*.pbxuser
+*~.nib

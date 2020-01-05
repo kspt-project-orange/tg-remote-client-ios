@@ -1,0 +1,511 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		325CB64023C13D140045179C /* PreferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CB63F23C13D140045179C /* PreferenceService.swift */; };
+		325CB64123C1479F0045179C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 325CB63823C135000045179C /* Assets.xcassets */; };
+		325CB64223C1479F0045179C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 325CB63923C135000045179C /* LaunchScreen.storyboard */; };
+		325CB64523C14AB50045179C /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CB64423C14AB50045179C /* TabViewController.swift */; };
+		325CB64923C151570045179C /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CB64823C151570045179C /* ApiClient.swift */; };
+		32AA7D5723C12DA300078A1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AA7D5623C12DA300078A1B /* AppDelegate.swift */; };
+		32AA7D5B23C12DA300078A1B /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AA7D5A23C12DA300078A1B /* AuthViewController.swift */; };
+		C17D60B8AF5E7668488700D6 /* AppDelegate+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D64D36985FFDB8D61D154 /* AppDelegate+Injection.swift */; };
+		C17D60BA1A0E4EA864346AE8 /* Pass2FaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D62A843C8C589396454E3 /* Pass2FaResponse.swift */; };
+		C17D60D7A3C14D250A7296DC /* Pass2FaRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D6A73EEA03CE59B6C4B04 /* Pass2FaRequest.swift */; };
+		C17D672D32187B51AFB11654 /* RequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D63247FF30C9CD301783A /* RequestBody.swift */; };
+		C17D6798BE7322D10B36B6AB /* ApiClient+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D6C289A0AE115C79B1818 /* ApiClient+Injection.swift */; };
+		C17D67B7ADBD022AE668C2FF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C17D634B01EE4EC240E329CC /* .gitignore */; };
+		C17D67CE5C56B22B6B00F4A7 /* RequestCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D6A6D9A195C50314FFEEF /* RequestCodeRequest.swift */; };
+		C17D67E4C6D5229EA4643BFA /* ResponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D675A3551F1D8FFC0DBA7 /* ResponseBody.swift */; };
+		C17D68ED8FE1D15326A3E35B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D6D508ACC6ED3CEA4702B /* Errors.swift */; };
+		C17D6E09988140D5ED174DDD /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D67490AC622C7A2401179 /* SignInRequest.swift */; };
+		C17D6E1B7814FBFBD59AC71B /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D6679DA5E64830570A478 /* SignInResponse.swift */; };
+		C17D6FB60D0A793AFB32FEE2 /* RequestCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D602DF6C4F2AD3D5C734C /* RequestCodeResponse.swift */; };
+		E34CF36140B7F7B0A466118F /* Pods_tg_remote_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2928E26FC1FCBA07B921660B /* Pods_tg_remote_client.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2928E26FC1FCBA07B921660B /* Pods_tg_remote_client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tg_remote_client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		325CB63823C135000045179C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		325CB63A23C135000045179C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		325CB63B23C135000045179C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		325CB63F23C13D140045179C /* PreferenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceService.swift; sourceTree = "<group>"; };
+		325CB64423C14AB50045179C /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		325CB64823C151570045179C /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		32AA7D5323C12DA300078A1B /* tg-remote-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tg-remote-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		32AA7D5623C12DA300078A1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		32AA7D5A23C12DA300078A1B /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		AEC13B0F37BCA21627461872 /* Pods-tg-remote-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tg-remote-client.release.xcconfig"; path = "Target Support Files/Pods-tg-remote-client/Pods-tg-remote-client.release.xcconfig"; sourceTree = "<group>"; };
+		B49F71578E26A23EE83A3DFF /* Pods-tg-remote-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tg-remote-client.debug.xcconfig"; path = "Target Support Files/Pods-tg-remote-client/Pods-tg-remote-client.debug.xcconfig"; sourceTree = "<group>"; };
+		C17D602DF6C4F2AD3D5C734C /* RequestCodeResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCodeResponse.swift; sourceTree = "<group>"; };
+		C17D62A843C8C589396454E3 /* Pass2FaResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pass2FaResponse.swift; sourceTree = "<group>"; };
+		C17D63247FF30C9CD301783A /* RequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBody.swift; sourceTree = "<group>"; };
+		C17D634B01EE4EC240E329CC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
+		C17D64D36985FFDB8D61D154 /* AppDelegate+Injection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Injection.swift"; sourceTree = "<group>"; };
+		C17D6679DA5E64830570A478 /* SignInResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
+		C17D67490AC622C7A2401179 /* SignInRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
+		C17D675A3551F1D8FFC0DBA7 /* ResponseBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseBody.swift; sourceTree = "<group>"; };
+		C17D6A6D9A195C50314FFEEF /* RequestCodeRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCodeRequest.swift; sourceTree = "<group>"; };
+		C17D6A73EEA03CE59B6C4B04 /* Pass2FaRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pass2FaRequest.swift; sourceTree = "<group>"; };
+		C17D6C289A0AE115C79B1818 /* ApiClient+Injection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ApiClient+Injection.swift"; sourceTree = "<group>"; };
+		C17D6D508ACC6ED3CEA4702B /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		32AA7D5023C12DA300078A1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E34CF36140B7F7B0A466118F /* Pods_tg_remote_client.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		325CB63723C135000045179C /* res */ = {
+			isa = PBXGroup;
+			children = (
+				325CB63823C135000045179C /* Assets.xcassets */,
+				325CB63923C135000045179C /* LaunchScreen.storyboard */,
+				325CB63B23C135000045179C /* Info.plist */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		325CB64723C151260045179C /* api */ = {
+			isa = PBXGroup;
+			children = (
+				325CB64823C151570045179C /* ApiClient.swift */,
+				C17D6C289A0AE115C79B1818 /* ApiClient+Injection.swift */,
+				C17D6F2DFFAAF681DCCA824B /* request */,
+				C17D6F49F7115EA4563ED7F4 /* response */,
+				C17D6D508ACC6ED3CEA4702B /* Errors.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		32AA7D4A23C12DA300078A1B = {
+			isa = PBXGroup;
+			children = (
+				325CB63723C135000045179C /* res */,
+				32AA7D5523C12DA300078A1B /* src */,
+				32AA7D5423C12DA300078A1B /* Products */,
+				A21614566558D05F9BFF2855 /* Pods */,
+				92355FEF319E2DECE5CE9AC0 /* Frameworks */,
+				C17D634B01EE4EC240E329CC /* .gitignore */,
+			);
+			sourceTree = "<group>";
+		};
+		32AA7D5423C12DA300078A1B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32AA7D5323C12DA300078A1B /* tg-remote-client.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32AA7D5523C12DA300078A1B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				325CB64723C151260045179C /* api */,
+				32AA7D5623C12DA300078A1B /* AppDelegate.swift */,
+				32AA7D5A23C12DA300078A1B /* AuthViewController.swift */,
+				325CB63F23C13D140045179C /* PreferenceService.swift */,
+				C17D64D36985FFDB8D61D154 /* AppDelegate+Injection.swift */,
+				325CB64423C14AB50045179C /* TabViewController.swift */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		92355FEF319E2DECE5CE9AC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2928E26FC1FCBA07B921660B /* Pods_tg_remote_client.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A21614566558D05F9BFF2855 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B49F71578E26A23EE83A3DFF /* Pods-tg-remote-client.debug.xcconfig */,
+				AEC13B0F37BCA21627461872 /* Pods-tg-remote-client.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C17D6F2DFFAAF681DCCA824B /* request */ = {
+			isa = PBXGroup;
+			children = (
+				C17D6A6D9A195C50314FFEEF /* RequestCodeRequest.swift */,
+				C17D63247FF30C9CD301783A /* RequestBody.swift */,
+				C17D67490AC622C7A2401179 /* SignInRequest.swift */,
+				C17D6A73EEA03CE59B6C4B04 /* Pass2FaRequest.swift */,
+			);
+			path = request;
+			sourceTree = "<group>";
+		};
+		C17D6F49F7115EA4563ED7F4 /* response */ = {
+			isa = PBXGroup;
+			children = (
+				C17D675A3551F1D8FFC0DBA7 /* ResponseBody.swift */,
+				C17D602DF6C4F2AD3D5C734C /* RequestCodeResponse.swift */,
+				C17D6679DA5E64830570A478 /* SignInResponse.swift */,
+				C17D62A843C8C589396454E3 /* Pass2FaResponse.swift */,
+			);
+			path = response;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		32AA7D5223C12DA300078A1B /* tg-remote-client */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32AA7D6723C12DA300078A1B /* Build configuration list for PBXNativeTarget "tg-remote-client" */;
+			buildPhases = (
+				61C507F9DED8A654F9428085 /* [CP] Check Pods Manifest.lock */,
+				32AA7D4F23C12DA300078A1B /* Sources */,
+				32AA7D5023C12DA300078A1B /* Frameworks */,
+				32AA7D5123C12DA300078A1B /* Resources */,
+				DEFDD827BAF020C3126E7A41 /* [CP] Embed Pods Frameworks */,
+				D5DDF8A3C3712BA8F37B4473 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "tg-remote-client";
+			productName = "tg-remote-client";
+			productReference = 32AA7D5323C12DA300078A1B /* tg-remote-client.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		32AA7D4B23C12DA300078A1B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "KSPT Orange";
+				TargetAttributes = {
+					32AA7D5223C12DA300078A1B = {
+						CreatedOnToolsVersion = 11.3;
+					};
+				};
+			};
+			buildConfigurationList = 32AA7D4E23C12DA300078A1B /* Build configuration list for PBXProject "tg-remote-client" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 32AA7D4A23C12DA300078A1B;
+			productRefGroup = 32AA7D5423C12DA300078A1B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				32AA7D5223C12DA300078A1B /* tg-remote-client */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		32AA7D5123C12DA300078A1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				325CB64123C1479F0045179C /* Assets.xcassets in Resources */,
+				325CB64223C1479F0045179C /* LaunchScreen.storyboard in Resources */,
+				C17D67B7ADBD022AE668C2FF /* .gitignore in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		61C507F9DED8A654F9428085 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tg-remote-client-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5DDF8A3C3712BA8F37B4473 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tg-remote-client/Pods-tg-remote-client-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tg-remote-client/Pods-tg-remote-client-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tg-remote-client/Pods-tg-remote-client-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DEFDD827BAF020C3126E7A41 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tg-remote-client/Pods-tg-remote-client-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tg-remote-client/Pods-tg-remote-client-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tg-remote-client/Pods-tg-remote-client-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		32AA7D4F23C12DA300078A1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32AA7D5B23C12DA300078A1B /* AuthViewController.swift in Sources */,
+				32AA7D5723C12DA300078A1B /* AppDelegate.swift in Sources */,
+				325CB64023C13D140045179C /* PreferenceService.swift in Sources */,
+				325CB64523C14AB50045179C /* TabViewController.swift in Sources */,
+				C17D60B8AF5E7668488700D6 /* AppDelegate+Injection.swift in Sources */,
+				325CB64923C151570045179C /* ApiClient.swift in Sources */,
+				C17D6798BE7322D10B36B6AB /* ApiClient+Injection.swift in Sources */,
+				C17D67CE5C56B22B6B00F4A7 /* RequestCodeRequest.swift in Sources */,
+				C17D67E4C6D5229EA4643BFA /* ResponseBody.swift in Sources */,
+				C17D672D32187B51AFB11654 /* RequestBody.swift in Sources */,
+				C17D6FB60D0A793AFB32FEE2 /* RequestCodeResponse.swift in Sources */,
+				C17D6E09988140D5ED174DDD /* SignInRequest.swift in Sources */,
+				C17D6E1B7814FBFBD59AC71B /* SignInResponse.swift in Sources */,
+				C17D60D7A3C14D250A7296DC /* Pass2FaRequest.swift in Sources */,
+				C17D60BA1A0E4EA864346AE8 /* Pass2FaResponse.swift in Sources */,
+				C17D68ED8FE1D15326A3E35B /* Errors.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		325CB63923C135000045179C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				325CB63A23C135000045179C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		32AA7D6523C12DA300078A1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		32AA7D6623C12DA300078A1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		32AA7D6823C12DA300078A1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B49F71578E26A23EE83A3DFF /* Pods-tg-remote-client.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 82A6YV6YJM;
+				INFOPLIST_FILE = "$(SRCROOT)/res/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "kspt.orange.tg-remote-client.ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		32AA7D6923C12DA300078A1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEC13B0F37BCA21627461872 /* Pods-tg-remote-client.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 82A6YV6YJM;
+				INFOPLIST_FILE = "$(SRCROOT)/res/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "kspt.orange.tg-remote-client.ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		32AA7D4E23C12DA300078A1B /* Build configuration list for PBXProject "tg-remote-client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32AA7D6523C12DA300078A1B /* Debug */,
+				32AA7D6623C12DA300078A1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32AA7D6723C12DA300078A1B /* Build configuration list for PBXNativeTarget "tg-remote-client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32AA7D6823C12DA300078A1B /* Debug */,
+				32AA7D6923C12DA300078A1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 32AA7D4B23C12DA300078A1B /* Project object */;
+}
