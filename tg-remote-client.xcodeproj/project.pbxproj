@@ -12,11 +12,17 @@
 		325CB64223C1479F0045179C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 325CB63923C135000045179C /* LaunchScreen.storyboard */; };
 		325CB64523C14AB50045179C /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CB64423C14AB50045179C /* TabViewController.swift */; };
 		325CB64923C151570045179C /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325CB64823C151570045179C /* ApiClient.swift */; };
+		329399AD23C28CF300178E25 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329399AB23C28CF200178E25 /* Colors.swift */; };
+		329399AE23C28CF300178E25 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329399AC23C28CF300178E25 /* AuthViewModel.swift */; };
+		329399B023C28D0600178E25 /* AttachDriveResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329399AF23C28D0600178E25 /* AttachDriveResponse.swift */; };
+		329399B223C28D1600178E25 /* AttachDriveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329399B123C28D1600178E25 /* AttachDriveRequest.swift */; };
+		329399B623C291C800178E25 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 329399B423C291C800178E25 /* Localizable.strings */; };
 		32AA7D5723C12DA300078A1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AA7D5623C12DA300078A1B /* AppDelegate.swift */; };
 		32AA7D5B23C12DA300078A1B /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AA7D5A23C12DA300078A1B /* AuthViewController.swift */; };
 		C17D60B8AF5E7668488700D6 /* AppDelegate+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D64D36985FFDB8D61D154 /* AppDelegate+Injection.swift */; };
 		C17D60BA1A0E4EA864346AE8 /* Pass2FaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D62A843C8C589396454E3 /* Pass2FaResponse.swift */; };
 		C17D60D7A3C14D250A7296DC /* Pass2FaRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D6A73EEA03CE59B6C4B04 /* Pass2FaRequest.swift */; };
+		C17D65271B7211F5F66D8F0E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D623C25D9F92C5557A8B7 /* Strings.swift */; };
 		C17D672D32187B51AFB11654 /* RequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D63247FF30C9CD301783A /* RequestBody.swift */; };
 		C17D6798BE7322D10B36B6AB /* ApiClient+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D6C289A0AE115C79B1818 /* ApiClient+Injection.swift */; };
 		C17D67B7ADBD022AE668C2FF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C17D634B01EE4EC240E329CC /* .gitignore */; };
@@ -37,12 +43,20 @@
 		325CB63F23C13D140045179C /* PreferenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceService.swift; sourceTree = "<group>"; };
 		325CB64423C14AB50045179C /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		325CB64823C151570045179C /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		329399AB23C28CF200178E25 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		329399AC23C28CF300178E25 /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		329399AF23C28D0600178E25 /* AttachDriveResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttachDriveResponse.swift; path = response/AttachDriveResponse.swift; sourceTree = "<group>"; };
+		329399B123C28D1600178E25 /* AttachDriveRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttachDriveRequest.swift; path = request/AttachDriveRequest.swift; sourceTree = "<group>"; };
+		329399B523C291C800178E25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		329399B723C291ED00178E25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		329399BA23C2922A00178E25 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		32AA7D5323C12DA300078A1B /* tg-remote-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tg-remote-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32AA7D5623C12DA300078A1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32AA7D5A23C12DA300078A1B /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		AEC13B0F37BCA21627461872 /* Pods-tg-remote-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tg-remote-client.release.xcconfig"; path = "Target Support Files/Pods-tg-remote-client/Pods-tg-remote-client.release.xcconfig"; sourceTree = "<group>"; };
 		B49F71578E26A23EE83A3DFF /* Pods-tg-remote-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tg-remote-client.debug.xcconfig"; path = "Target Support Files/Pods-tg-remote-client/Pods-tg-remote-client.debug.xcconfig"; sourceTree = "<group>"; };
 		C17D602DF6C4F2AD3D5C734C /* RequestCodeResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCodeResponse.swift; sourceTree = "<group>"; };
+		C17D623C25D9F92C5557A8B7 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		C17D62A843C8C589396454E3 /* Pass2FaResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pass2FaResponse.swift; sourceTree = "<group>"; };
 		C17D63247FF30C9CD301783A /* RequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBody.swift; sourceTree = "<group>"; };
 		C17D634B01EE4EC240E329CC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
@@ -71,6 +85,7 @@
 		325CB63723C135000045179C /* res */ = {
 			isa = PBXGroup;
 			children = (
+				329399B323C2913600178E25 /* translations */,
 				325CB63823C135000045179C /* Assets.xcassets */,
 				325CB63923C135000045179C /* LaunchScreen.storyboard */,
 				325CB63B23C135000045179C /* Info.plist */,
@@ -81,6 +96,8 @@
 		325CB64723C151260045179C /* api */ = {
 			isa = PBXGroup;
 			children = (
+				329399B123C28D1600178E25 /* AttachDriveRequest.swift */,
+				329399AF23C28D0600178E25 /* AttachDriveResponse.swift */,
 				325CB64823C151570045179C /* ApiClient.swift */,
 				C17D6C289A0AE115C79B1818 /* ApiClient+Injection.swift */,
 				C17D6F2DFFAAF681DCCA824B /* request */,
@@ -88,6 +105,22 @@
 				C17D6D508ACC6ED3CEA4702B /* Errors.swift */,
 			);
 			path = api;
+			sourceTree = "<group>";
+		};
+		329399B323C2913600178E25 /* translations */ = {
+			isa = PBXGroup;
+			children = (
+				329399B423C291C800178E25 /* Localizable.strings */,
+			);
+			path = translations;
+			sourceTree = "<group>";
+		};
+		329399BB23C2930800178E25 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				C17D623C25D9F92C5557A8B7 /* Strings.swift */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 		32AA7D4A23C12DA300078A1B = {
@@ -113,6 +146,9 @@
 		32AA7D5523C12DA300078A1B /* src */ = {
 			isa = PBXGroup;
 			children = (
+				329399BB23C2930800178E25 /* util */,
+				329399AC23C28CF300178E25 /* AuthViewModel.swift */,
+				329399AB23C28CF200178E25 /* Colors.swift */,
 				325CB64723C151260045179C /* api */,
 				32AA7D5623C12DA300078A1B /* AppDelegate.swift */,
 				32AA7D5A23C12DA300078A1B /* AuthViewController.swift */,
@@ -207,6 +243,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 32AA7D4A23C12DA300078A1B;
 			productRefGroup = 32AA7D5423C12DA300078A1B /* Products */;
@@ -224,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				325CB64123C1479F0045179C /* Assets.xcassets in Resources */,
+				329399B623C291C800178E25 /* Localizable.strings in Resources */,
 				325CB64223C1479F0045179C /* LaunchScreen.storyboard in Resources */,
 				C17D67B7ADBD022AE668C2FF /* .gitignore in Resources */,
 			);
@@ -298,10 +336,13 @@
 				32AA7D5B23C12DA300078A1B /* AuthViewController.swift in Sources */,
 				32AA7D5723C12DA300078A1B /* AppDelegate.swift in Sources */,
 				325CB64023C13D140045179C /* PreferenceService.swift in Sources */,
+				329399AD23C28CF300178E25 /* Colors.swift in Sources */,
 				325CB64523C14AB50045179C /* TabViewController.swift in Sources */,
+				329399B023C28D0600178E25 /* AttachDriveResponse.swift in Sources */,
 				C17D60B8AF5E7668488700D6 /* AppDelegate+Injection.swift in Sources */,
 				325CB64923C151570045179C /* ApiClient.swift in Sources */,
 				C17D6798BE7322D10B36B6AB /* ApiClient+Injection.swift in Sources */,
+				329399AE23C28CF300178E25 /* AuthViewModel.swift in Sources */,
 				C17D67CE5C56B22B6B00F4A7 /* RequestCodeRequest.swift in Sources */,
 				C17D67E4C6D5229EA4643BFA /* ResponseBody.swift in Sources */,
 				C17D672D32187B51AFB11654 /* RequestBody.swift in Sources */,
@@ -311,6 +352,8 @@
 				C17D60D7A3C14D250A7296DC /* Pass2FaRequest.swift in Sources */,
 				C17D60BA1A0E4EA864346AE8 /* Pass2FaResponse.swift in Sources */,
 				C17D68ED8FE1D15326A3E35B /* Errors.swift in Sources */,
+				329399B223C28D1600178E25 /* AttachDriveRequest.swift in Sources */,
+				C17D65271B7211F5F66D8F0E /* Strings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +368,16 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		329399B423C291C800178E25 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				329399B523C291C800178E25 /* Base */,
+				329399B723C291ED00178E25 /* en */,
+				329399BA23C2922A00178E25 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -332,6 +385,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -392,6 +446,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

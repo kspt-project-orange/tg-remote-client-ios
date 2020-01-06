@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings (ru)
+  tg-remote-client
+
+  Created by anton.lamtev on 06/01/2020.
+  Copyright © 2020 KSPT Orange. All rights reserved.
+*/
+
+"AUTHORIZATION_ENTER_TELEGRAM_PHONE_LABEL" = "Введите номер телефона, привязанный к telegram";
+"AUTHORIZATION_ENTER_TELEGRAM_PHONE_INPUT_PLACEHOLDER" = "Номер телефона...";
+"AUTHORIZATION_BUTTON_NEXT" = "Далее";
+
+"AUTHORIZATION_ENTER_TELEGRAM_CODE_LABEL" = "Введите код, полученный от telegram";
+"AUTHORIZATION_ENTER_TELEGRAM_CODE_INPUT_PLACEHOLDER" = "Код...";
+
+"AUTHORIZATION_ENTER_TELEGRAM_PASSWORD_LABEL" = "Введите пароль от telegram";
+"AUTHORIZATION_ENTER_TELEGRAM_PASSWORD_INPUT_PLACEHOLDER" = "Пароль";
+
+"AUTHORIZATION_ENTER_GOOGLE_DRIVE_LABEL" = "Добавьте Google Drive аккаунт";

@@ -8,6 +8,7 @@
 
 import UIKit
 import Resolver
+import GoogleSignIn
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,16 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        setupWindow()
+
+        return true
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
+        GIDSignIn.sharedInstance().handle(url)
+    }
+
+    private func setupWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
         if preferences.hasAuthorization {
             window?.rootViewController = TabViewController()
@@ -23,7 +34,5 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = AuthViewController()
         }
         window?.makeKeyAndVisible()
-
-        return true
     }
 }

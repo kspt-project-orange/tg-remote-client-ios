@@ -32,6 +32,7 @@ final class ApiClient {
         static let requestCode = "/v0/auth/requestCode"
         static let signIn = "/v0/auth/signIn"
         static let pass2Fa = "/v0/auth/pass2FA"
+        static let attachDrive = "/v0/auth/attachDrive"
     }
 
     @Injected
@@ -53,6 +54,10 @@ final class ApiClient {
         postMethod(withPath: Paths.pass2Fa, body: body, completion: completion)
     }
 
+    func attachDrive(body: AttachDriveRequest, completion: @escaping (Result<AttachDriveResponse, Error>) -> Void) {
+        postMethod(withPath: Paths.attachDrive, body: body, completion: completion)
+    }
+
     private func postMethod<Req: RequestBody, Resp: ResponseBody>(withPath path: String, body: Req, completion: @escaping (Result<Resp, Error>) -> Void) {
         guard let url = URL(string: Endpoints.local + path),
               let data = try? encoder.encode(body) else {
@@ -65,7 +70,7 @@ final class ApiClient {
         request.httpBody = data
         request.setValue(MediaTypes.applicationJson, forHTTPHeaderField: Headers.contentType)
 
-        let task = session.dataTask(with: request) { [unowned self] (data: Data?, response: URLResponse?, error: Error?) -> Void in
+        session.dataTask(with: request) { [unowned self] (data: Data?, response: URLResponse?, error: Error?) -> Void in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -79,8 +84,7 @@ final class ApiClient {
             }
 
             completion(.success(responseBody))
-        }
-        task.resume()
+        }.resume()
     }
 }
 

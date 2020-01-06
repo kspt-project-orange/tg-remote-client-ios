@@ -33,10 +33,30 @@ final class PreferenceService {
         hasTelegramAuthorization && hasGoogleDriveAuthorization
     }
 
+    var token: String {
+        get {
+            value(forKey: .token, ofType: String.self)
+        }
+        set {
+            setValue(newValue, forKey: .token)
+        }
+    }
+
+    var googleSignInToken: String {
+        get {
+            value(forKey: .googleSignInToken, ofType: String.self)
+        }
+        set {
+            setValue(newValue, forKey: .googleSignInToken)
+        }
+    }
+
     private func value<T>(forKey key: Key, ofType type: T.Type) -> T {
         switch T.self {
         case is Bool.Type:
             return userDefaults.bool(forKey: key.rawValue) as! T
+        case is String.Type:
+            return userDefaults.string(forKey: key.rawValue) as! T
         default:
             fatalError()
         }
@@ -45,6 +65,8 @@ final class PreferenceService {
     private func setValue<T>(_ value: T, forKey key: Key) {
         switch T.self {
         case is Bool.Type:
+            fallthrough
+        case is String.Type:
             userDefaults.set(value, forKey: key.rawValue)
         default:
             fatalError()
@@ -54,5 +76,7 @@ final class PreferenceService {
     private enum Key: String {
         case hasTelegramAuthorization
         case hasGoogleDriveAuthorization
+        case token
+        case googleSignInToken
     }
 }
