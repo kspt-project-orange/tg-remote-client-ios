@@ -17,3 +17,6 @@
 "AUTHORIZATION_ENTER_TELEGRAM_PASSWORD_INPUT_PLACEHOLDER" = "Пароль";
 
 "AUTHORIZATION_ENTER_GOOGLE_DRIVE_LABEL" = "Добавьте Google Drive аккаунт";
+
+"AUTHORIZATION_ALERT_TITLE" = "Произошла ошибка";
+"AUTHORIZATION_ALERT_TEXT" = "Убедитесь в правильности введенных данных и повторите попытку";

@@ -9,7 +9,7 @@ import GoogleSignIn
 import os
 
 protocol AuthViewModelDelegate: AnyObject {
-
+    func authViewModelDidBecomeAuthorized(_ viewModel: AuthViewModel)
 }
 
 final class AuthViewModel: NSObject {
@@ -37,9 +37,7 @@ final class AuthViewModel: NSObject {
     private override init() {
         super.init()
         state = preferences.hasTelegramAuthorization ? .waitingForGoogleSignIn : .waitingForPhone
-    }
 
-    func setupGoogleSignIn() {
         GIDSignIn.sharedInstance().clientID = Credentials.googleSignInClientId
         GIDSignIn.sharedInstance().serverClientID = Credentials.googleSignInServerClientId
         GIDSignIn.sharedInstance().scopes.append(contentsOf: GoogleDriveScopes.all)
@@ -139,6 +137,7 @@ extension AuthViewModel: GIDSignInDelegate {
                 case .ok:
                     self.state = .authorized
                     self.preferences.hasGoogleDriveAuthorization = true
+                    self.delegate?.authViewModelDidBecomeAuthorized(self)
                 default:
                     break
                 }

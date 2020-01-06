@@ -58,29 +58,36 @@ final class AuthViewController: UIViewController {
         return b
     }()
 
+    private lazy var semitransparentView: UIView = {
+        let v = UIView()
+        v.backgroundColor = Colors.background.withAlphaComponent(0.5)
+        v.isHidden = true
+        v.isUserInteractionEnabled = false
+
+        return v
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = Colors.background
 
-        viewModel.setupGoogleSignIn()
+        viewModel.delegate = self
         GIDSignIn.sharedInstance().presentingViewController = self
 
         updateUI()
 
-//        client.requestCode(body: RequestCodeRequest(phone: "+79811585160")) { res in
-//            switch res {
-//            case .success(let response):
-//                print(response.status)
-//                print(response.token)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-        [text, input, button, googleSignInButton].forEach(view.addSubview)
+        [text, input, button, googleSignInButton, semitransparentView].forEach(view.addSubview)
+        view.bringSubviewToFront(semitransparentView)
 
         view.setNeedsUpdateConstraints()
         view.updateConstraintsIfNeeded()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        semitransparentView.frame = view.bounds
     }
 
     override func updateViewConstraints() {
@@ -112,7 +119,7 @@ final class AuthViewController: UIViewController {
     }
 
     private func updateUI() {
-        input.placeholder = ""
+        input.text = ""
         switch viewModel.state {
         case .waitingForPhone:
             text.text = "AUTHORIZATION_ENTER_TELEGRAM_PHONE_LABEL".localized
@@ -128,6 +135,11 @@ final class AuthViewController: UIViewController {
             input.isHidden = true
             button.isHidden = true
             googleSignInButton.isHidden = false
+        case .authorized:
+            dismiss(animated: true)
+            guard let window = UIApplication.shared.keyWindow else { return }
+            window.rootViewController = TabViewController()
+            UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {})
         default:
             fatalError()
         }
@@ -135,29 +147,41 @@ final class AuthViewController: UIViewController {
 
     @objc
     private func buttonClicked() {
+        semitransparentView.isHidden = false
+        view.isUserInteractionEnabled = false
+
+        input.resignFirstResponder()
         switch viewModel.state {
         case .waitingForPhone:
-            viewModel.sendPhoneNumber(input.text!, completion: updateUIIfNeeded)
+            viewModel.sendPhoneNumber(input.text!, completion: updateUIOnSuccess)
         case .waitingForCode:
-            viewModel.sendCode(input.text!, completion: updateUIIfNeeded)
+            viewModel.sendCode(input.text!, completion: updateUIOnSuccess)
         case .waitingForPassword:
-            viewModel.sendPassword(input.text!, completion: updateUIIfNeeded)
+            viewModel.sendPassword(input.text!, completion: updateUIOnSuccess)
         default:
             break
         }
     }
 
-    private func updateUIIfNeeded(_ needed: Bool) {
-        guard needed else { return }
-
+    private func updateUIOnSuccess(_ success: Bool) {
         DispatchQueue.main.async {
+            self.semitransparentView.isHidden = true
+            self.view.isUserInteractionEnabled = true
+
+            guard success else {
+                self.showAlert(title: "AUTHORIZATION_ALERT_TITLE".localized, message: "AUTHORIZATION_ALERT_TEXT".localized)
+                return
+            }
+
             self.updateUI()
         }
     }
 }
 
 extension AuthViewController: AuthViewModelDelegate {
-
+    func authViewModelDidBecomeAuthorized(_ viewModel: AuthViewModel) {
+        updateUIOnSuccess(true)
+    }
 }
 
 extension AuthViewController: UITextFieldDelegate {
