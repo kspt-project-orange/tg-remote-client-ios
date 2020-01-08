@@ -124,12 +124,18 @@ final class AuthViewController: UIViewController {
         case .waitingForPhone:
             text.text = "AUTHORIZATION_ENTER_TELEGRAM_PHONE_LABEL".localized
             input.placeholder = "AUTHORIZATION_ENTER_TELEGRAM_PHONE_INPUT_PLACEHOLDER".localized
+            input.isSecureTextEntry = false
+            input.keyboardType = .phonePad
         case .waitingForCode:
             text.text = "AUTHORIZATION_ENTER_TELEGRAM_CODE_LABEL".localized
             input.placeholder = "AUTHORIZATION_ENTER_TELEGRAM_CODE_INPUT_PLACEHOLDER".localized
+            input.isSecureTextEntry = false
+            input.keyboardType = .numberPad
         case .waitingForPassword:
             text.text = "AUTHORIZATION_ENTER_TELEGRAM_PASSWORD_LABEL".localized
             input.placeholder = "AUTHORIZATION_ENTER_TELEGRAM_PASSWORD_INPUT_PLACEHOLDER".localized
+            input.isSecureTextEntry = true
+            input.keyboardType = .default
         case .waitingForGoogleSignIn:
             text.text = "AUTHORIZATION_ENTER_GOOGLE_DRIVE_LABEL".localized
             input.isHidden = true
@@ -179,8 +185,8 @@ final class AuthViewController: UIViewController {
 }
 
 extension AuthViewController: AuthViewModelDelegate {
-    func authViewModelDidBecomeAuthorized(_ viewModel: AuthViewModel) {
-        updateUIOnSuccess(true)
+    func authViewModel(_ viewModel: AuthViewModel, didAuthorizeSuccessfully successfully: Bool) {
+        updateUIOnSuccess(successfully)
     }
 }
 

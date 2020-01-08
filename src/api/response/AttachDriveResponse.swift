@@ -10,6 +10,8 @@ struct AttachDriveResponse: ResponseBody {
 
     enum Status: String, Decodable {
         case ok = "OK"
+        case wrongIdToken = "WRONG_ID_TOKEN"
+        case wrongServerAuthCode = "WRONG_SERVER_AUTH_CODE"
         case notEnoughRights = "NOT_ENOUGH_RIGHTS"
         case error = "ERROR"
     }

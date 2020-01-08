@@ -10,6 +10,7 @@ import Foundation
 import Resolver
 import ZippyJSON
 
+//TODO: rewrite using Combine/OpenCombine/RxSwift to avoid shitty callbacks
 final class ApiClient {
     private struct Methods {
         static let post = "POST"

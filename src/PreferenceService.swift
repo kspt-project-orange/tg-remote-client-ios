@@ -42,12 +42,21 @@ final class PreferenceService {
         }
     }
 
-    var googleSignInToken: String {
+    var googleIdToken: String {
         get {
-            value(forKey: .googleSignInToken, ofType: String.self)
+            value(forKey: .googleIdToken, ofType: String.self)
         }
         set {
-            setValue(newValue, forKey: .googleSignInToken)
+            setValue(newValue, forKey: .googleIdToken)
+        }
+    }
+
+    var googleServerAuthCode: String {
+        get {
+            value(forKey: .googleServerAuthCode, ofType: String.self)
+        }
+        set {
+            setValue(newValue, forKey: .googleServerAuthCode)
         }
     }
 
@@ -77,6 +86,7 @@ final class PreferenceService {
         case hasTelegramAuthorization
         case hasGoogleDriveAuthorization
         case token
-        case googleSignInToken
+        case googleIdToken
+        case googleServerAuthCode
     }
 }

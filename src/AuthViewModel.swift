@@ -6,10 +6,9 @@
 import Foundation
 import Resolver
 import GoogleSignIn
-import os
 
 protocol AuthViewModelDelegate: AnyObject {
-    func authViewModelDidBecomeAuthorized(_ viewModel: AuthViewModel)
+    func authViewModel(_ viewModel: AuthViewModel, didAuthorizeSuccessfully successfully: Bool)
 }
 
 final class AuthViewModel: NSObject {
@@ -58,7 +57,7 @@ final class AuthViewModel: NSObject {
                 }
                 completion(false)
             case .failure(let error):
-                print("\(error)")
+                print(error)
                 completion(false)
             }
         }
@@ -83,7 +82,7 @@ final class AuthViewModel: NSObject {
                 }
                 completion(true)
             case .failure(let error):
-                print("\(error)")
+                print(error)
                 completion(false)
             }
         }
@@ -103,7 +102,7 @@ final class AuthViewModel: NSObject {
                 }
                 completion(false)
             case .failure(let error):
-                print("\(error)")
+                print(error)
                 completion(false)
             }
         }
@@ -120,15 +119,34 @@ final class AuthViewModel: NSObject {
 
 extension AuthViewModel: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        guard error == nil else { return }
-
-        user.authentication.getTokensWithHandler { auth, err in
-            guard error == nil, let auth = auth else { return }
-
-            self.preferences.googleSignInToken = auth.accessToken
+        guard error == nil else {
+            print(error!)
+            self.delegate?.authViewModel(self, didAuthorizeSuccessfully: false)
+            return
         }
 
-        client.attachDrive(body: AttachDriveRequest(token: preferences.token, driveToken: preferences.googleSignInToken)) { [weak self] result in
+        var success = false
+        user.authentication.getTokensWithHandler { auth, err in
+            guard error == nil,
+                  let auth = auth,
+                  let serverAuthCode = user.serverAuthCode else {
+                print(error!)
+                return
+            }
+
+            self.preferences.googleIdToken = auth.idToken
+            self.preferences.googleServerAuthCode = serverAuthCode
+            success = true
+        }
+
+        guard success else {
+            self.delegate?.authViewModel(self, didAuthorizeSuccessfully: false)
+            return
+        }
+
+        client.attachDrive(body: AttachDriveRequest(token: preferences.token,
+                                                    driveIdToken: preferences.googleIdToken,
+                                                    driveServerAuthCode: preferences.googleServerAuthCode)) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
@@ -137,13 +155,13 @@ extension AuthViewModel: GIDSignInDelegate {
                 case .ok:
                     self.state = .authorized
                     self.preferences.hasGoogleDriveAuthorization = true
-                    self.delegate?.authViewModelDidBecomeAuthorized(self)
+                    self.delegate?.authViewModel(self, didAuthorizeSuccessfully: true)
                 default:
-                    break
+                    self.delegate?.authViewModel(self, didAuthorizeSuccessfully: false)
                 }
             case .failure(let error):
-                print("\(error)")
-                break
+                self.delegate?.authViewModel(self, didAuthorizeSuccessfully: false)
+                print(error)
             }
         }
     }

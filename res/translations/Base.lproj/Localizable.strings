@@ -19,4 +19,4 @@
 "AUTHORIZATION_ENTER_GOOGLE_DRIVE_LABEL" = "Attach Google Drive account";
 
 "AUTHORIZATION_ALERT_TITLE" = "Error occurred";
-"AUTHORIZATION_ALERT_TEXT" = "Make sure input data is correct";
+"AUTHORIZATION_ALERT_TEXT" = "Make sure input data is correct and try again";

@@ -7,5 +7,6 @@ import Foundation
 
 struct AttachDriveRequest: RequestBody {
     let token: String
-    let driveToken: String
+    let driveIdToken: String
+    let driveServerAuthCode: String
 }
