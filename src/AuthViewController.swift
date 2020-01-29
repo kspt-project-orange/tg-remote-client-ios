@@ -67,6 +67,17 @@ final class AuthViewController: UIViewController {
         return v
     }()
 
+    private lazy var prefBtn: UIButton = {
+        let b = UIButton(type: .system)
+        b.setTitle("PREF_BUTTON_TITLE".localized, for: .normal)
+        b.backgroundColor = Colors.background
+        b.titleLabel?.textAlignment = .center
+        b.setTitleColorForAllStates(Colors.text)
+        b.addTarget(self, action: #selector(prefBtnClicked), for: .touchUpInside)
+
+        return b
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -77,7 +88,7 @@ final class AuthViewController: UIViewController {
 
         updateUI()
 
-        [text, input, button, googleSignInButton, semitransparentView].forEach(view.addSubview)
+        [text, input, button, googleSignInButton, semitransparentView, prefBtn].forEach(view.addSubview)
         view.bringSubviewToFront(semitransparentView)
 
         view.setNeedsUpdateConstraints()
@@ -116,6 +127,12 @@ final class AuthViewController: UIViewController {
             make.top.equalTo(text.snp.bottom).offset(32.0)
             make.centerX.equalTo(view)
         }
+
+        prefBtn.snp.makeConstraints { make in
+            make.bottom.equalTo(view).offset(-64.0)
+            make.centerX.equalTo(view)
+            make.size.equalTo(prefBtn)
+        }
     }
 
     private func updateUI() {
@@ -126,16 +143,25 @@ final class AuthViewController: UIViewController {
             input.placeholder = "AUTHORIZATION_ENTER_TELEGRAM_PHONE_INPUT_PLACEHOLDER".localized
             input.isSecureTextEntry = false
             input.keyboardType = .phonePad
+            input.isHidden = false
+            button.isHidden = false
+            googleSignInButton.isHidden = true
         case .waitingForCode:
             text.text = "AUTHORIZATION_ENTER_TELEGRAM_CODE_LABEL".localized
             input.placeholder = "AUTHORIZATION_ENTER_TELEGRAM_CODE_INPUT_PLACEHOLDER".localized
             input.isSecureTextEntry = false
             input.keyboardType = .numberPad
+            input.isHidden = false
+            button.isHidden = false
+            googleSignInButton.isHidden = true
         case .waitingForPassword:
             text.text = "AUTHORIZATION_ENTER_TELEGRAM_PASSWORD_LABEL".localized
             input.placeholder = "AUTHORIZATION_ENTER_TELEGRAM_PASSWORD_INPUT_PLACEHOLDER".localized
             input.isSecureTextEntry = true
             input.keyboardType = .default
+            input.isHidden = false
+            button.isHidden = false
+            googleSignInButton.isHidden = true
         case .waitingForGoogleSignIn:
             text.text = "AUTHORIZATION_ENTER_GOOGLE_DRIVE_LABEL".localized
             input.isHidden = true
@@ -181,6 +207,38 @@ final class AuthViewController: UIViewController {
 
             self.updateUI()
         }
+    }
+
+    @objc
+    private func prefBtnClicked() {
+        let actionSheet = UIAlertController(title: "PREF_BUTTON_TITLE".localized, message: nil, preferredStyle: .actionSheet)
+
+        let serverUrlActionTitle = viewModel.preferences.serverUrl ?? "PREF_ACTION_SHEET_SET_SERVER_URL_ACTION_TITLE".localized
+        let serverUrlAction = UIAlertAction(title: serverUrlActionTitle, style: .default) { _ in
+            let alert = UIAlertController(title: "PREF_ACTION_SHEET_SET_SERVER_URL_ACTION_TITLE".localized, message: nil, preferredStyle: .alert)
+            alert.addTextField { textField in
+                textField.placeholder = serverUrlActionTitle
+                textField.clearButtonMode = .whileEditing
+            }
+            alert.addAction(title: "PREF_ACTION_SHEET_OK_ACTION_TITLE".localized, style: .default) { [unowned alert] _ in
+                self.viewModel.preferences.serverUrl = alert.textFields![0].text
+            }
+
+            alert.addAction(title: "PREF_ACTION_SHEET_CANCEL_ACTION_TITLE".localized, style: .cancel)
+            alert.show(animated: true)
+        }
+
+        actionSheet.addAction(serverUrlAction)
+
+        let resetAction = UIAlertAction(title: "PREF_ACTION_SHEET_RESET_ACTION_TITLE".localized, style: .destructive) { _ in
+            self.viewModel.reset {
+                self.updateUI()
+            }
+        }
+        actionSheet.addAction(resetAction)
+        actionSheet.show(animated: true)
+
+        actionSheet.addAction(title: "PREF_ACTION_SHEET_CANCEL_ACTION_TITLE".localized, style: .cancel)
     }
 }
 

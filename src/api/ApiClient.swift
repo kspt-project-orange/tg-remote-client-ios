@@ -42,6 +42,12 @@ final class ApiClient {
     private var decoder: ZippyJSONDecoder
     @Injected
     private var session: URLSession
+    @Injected
+    private var preferences: PreferenceService
+
+    private var endpoint: String {
+        preferences.serverUrl ?? Endpoints.local
+    }
 
     func requestCode(body: RequestCodeRequest, completion: @escaping (Result<RequestCodeResponse, Error>) -> Void) {
         postMethod(withPath: Paths.requestCode, body: body, completion: completion)
@@ -60,7 +66,7 @@ final class ApiClient {
     }
 
     private func postMethod<Req: RequestBody, Resp: ResponseBody>(withPath path: String, body: Req, completion: @escaping (Result<Resp, Error>) -> Void) {
-        guard let url = URL(string: Endpoints.local + path),
+        guard let url = URL(string: endpoint + path),
               let data = try? encoder.encode(body) else {
             completion(.failure(Errors.badRequest))
             return

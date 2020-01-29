@@ -26,7 +26,7 @@ final class AuthViewModel: NSObject {
     @Injected
     private var client: ApiClient
     @Injected
-    private var preferences: PreferenceService
+    private(set) var preferences: PreferenceService
     private(set) var state: State!
 
     weak var delegate: AuthViewModelDelegate?
@@ -64,7 +64,7 @@ final class AuthViewModel: NSObject {
     }
 
     func sendCode(_ code: String, completion: @escaping (Bool) -> Void) {
-        client.signIn(body: SignInRequest(token: preferences.token, code: code)) { [weak self] result in
+        client.signIn(body: SignInRequest(token: preferences.token!, code: code)) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
@@ -89,7 +89,7 @@ final class AuthViewModel: NSObject {
     }
 
     func sendPassword(_ password: String, completion: @escaping (Bool) -> Void) {
-        client.pass2Fa(body: Pass2FaRequest(token: preferences.token, password: password)) { [weak self] result in
+        client.pass2Fa(body: Pass2FaRequest(token: preferences.token!, password: password)) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
@@ -106,6 +106,18 @@ final class AuthViewModel: NSObject {
                 completion(false)
             }
         }
+    }
+
+    func reset(completion: () -> Void) {
+        preferences.hasTelegramAuthorization = false
+        preferences.hasGoogleDriveAuthorization = false
+        preferences.token = nil
+        preferences.googleIdToken = nil
+        preferences.googleServerAuthCode = nil
+
+        state = .waitingForPhone
+
+        completion()
     }
 
     enum State {
@@ -144,9 +156,9 @@ extension AuthViewModel: GIDSignInDelegate {
             return
         }
 
-        client.attachDrive(body: AttachDriveRequest(token: preferences.token,
-                                                    driveIdToken: preferences.googleIdToken,
-                                                    driveServerAuthCode: preferences.googleServerAuthCode)) { [weak self] result in
+        client.attachDrive(body: AttachDriveRequest(token: preferences.token!,
+                                                    driveIdToken: preferences.googleIdToken!,
+                                                    driveServerAuthCode: preferences.googleServerAuthCode!)) { [weak self] result in
             guard let self = self else { return }
 
             switch result {

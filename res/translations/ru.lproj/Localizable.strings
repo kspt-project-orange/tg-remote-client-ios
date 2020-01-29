@@ -20,3 +20,13 @@
 
 "AUTHORIZATION_ALERT_TITLE" = "Произошла ошибка";
 "AUTHORIZATION_ALERT_TEXT" = "Убедитесь в правильности введенных данных и повторите попытку";
+
+"PREF_BUTTON_TITLE" = "Настройки";
+
+"PREF_ACTION_SHEET_SET_SERVER_URL_ACTION_TITLE" = "Установить url сервера";
+
+"PREF_ACTION_SHEET_RESET_ACTION_TITLE" = "Сброс";
+
+"PREF_ACTION_SHEET_CANCEL_ACTION_TITLE" = "Отмена";
+
+"PREF_ACTION_SHEET_OK_ACTION_TITLE" = "OK";

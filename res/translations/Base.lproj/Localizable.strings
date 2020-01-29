@@ -20,3 +20,13 @@
 
 "AUTHORIZATION_ALERT_TITLE" = "Error occurred";
 "AUTHORIZATION_ALERT_TEXT" = "Make sure input data is correct and try again";
+
+"PREF_BUTTON_TITLE" = "Preferences";
+
+"PREF_ACTION_SHEET_SET_SERVER_URL_ACTION_TITLE" = "Set server url";
+
+"PREF_ACTION_SHEET_RESET_ACTION_TITLE" = "Reset";
+
+"PREF_ACTION_SHEET_CANCEL_ACTION_TITLE" = "Cancel";
+
+"PREF_ACTION_SHEET_OK_ACTION_TITLE" = "OK";

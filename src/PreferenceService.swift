@@ -1,5 +1,5 @@
 //
-//  PreferrenceService.swift
+//  PreferenceService.swift
 //  tg-remote-client
 //
 //  Created by anton.lamtev on 05/01/2020.
@@ -13,7 +13,7 @@ final class PreferenceService {
 
     var hasTelegramAuthorization: Bool {
         get {
-            value(forKey: .hasTelegramAuthorization, ofType: Bool.self)
+            value(forKey: .hasTelegramAuthorization, ofType: Bool.self) ?? false
         }
         set {
             setValue(newValue, forKey: .hasTelegramAuthorization)
@@ -22,7 +22,7 @@ final class PreferenceService {
 
     var hasGoogleDriveAuthorization: Bool {
         get {
-            value(forKey: .hasGoogleDriveAuthorization, ofType: Bool.self)
+            value(forKey: .hasGoogleDriveAuthorization, ofType: Bool.self) ?? false
         }
         set {
             setValue(newValue, forKey: .hasGoogleDriveAuthorization)
@@ -33,7 +33,7 @@ final class PreferenceService {
         hasTelegramAuthorization && hasGoogleDriveAuthorization
     }
 
-    var token: String {
+    var token: String? {
         get {
             value(forKey: .token, ofType: String.self)
         }
@@ -42,7 +42,7 @@ final class PreferenceService {
         }
     }
 
-    var googleIdToken: String {
+    var googleIdToken: String? {
         get {
             value(forKey: .googleIdToken, ofType: String.self)
         }
@@ -51,7 +51,7 @@ final class PreferenceService {
         }
     }
 
-    var googleServerAuthCode: String {
+    var googleServerAuthCode: String? {
         get {
             value(forKey: .googleServerAuthCode, ofType: String.self)
         }
@@ -60,22 +60,31 @@ final class PreferenceService {
         }
     }
 
-    private func value<T>(forKey key: Key, ofType type: T.Type) -> T {
+    var serverUrl: String? {
+        get {
+            value(forKey: .serverUrl, ofType: String.self)
+        }
+        set {
+            setValue(newValue, forKey: .serverUrl)
+        }
+    }
+
+    private func value<T>(forKey key: Key, ofType type: T.Type) -> T? {
         switch T.self {
         case is Bool.Type:
-            return userDefaults.bool(forKey: key.rawValue) as! T
+            return userDefaults.bool(forKey: key.rawValue) as? T
         case is String.Type:
-            return userDefaults.string(forKey: key.rawValue) as! T
+            return userDefaults.string(forKey: key.rawValue) as? T
         default:
             fatalError()
         }
     }
 
-    private func setValue<T>(_ value: T, forKey key: Key) {
+    private func setValue<T>(_ value: T?, forKey key: Key) {
         switch T.self {
         case is Bool.Type:
             fallthrough
-        case is String.Type:
+        case is String.Type, is (String?).Type:
             userDefaults.set(value, forKey: key.rawValue)
         default:
             fatalError()
@@ -88,5 +97,6 @@ final class PreferenceService {
         case token
         case googleIdToken
         case googleServerAuthCode
+        case serverUrl
     }
 }
