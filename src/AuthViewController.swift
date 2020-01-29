@@ -78,6 +78,20 @@ final class AuthViewController: UIViewController {
         return b
     }()
 
+    init(clean: Bool = false) {
+        super.init(nibName: nil, bundle: nil)
+
+        if clean {
+            viewModel.reset {
+                self.updateUI()
+            }
+        }
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
