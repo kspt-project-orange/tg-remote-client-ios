@@ -7,7 +7,7 @@ import Foundation
 
 private let domain = "tg-remote-client::ApiClient"
 
-struct Errors {
+enum Errors {
     static let badRequest: Error = { NSError(domain: domain, code: ErrorCodes.badRequest.rawValue) }()
     static let badResponse: Error = { NSError(domain: domain, code: ErrorCodes.badResponse.rawValue) }()
 }

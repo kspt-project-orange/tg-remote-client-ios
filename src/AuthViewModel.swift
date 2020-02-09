@@ -12,12 +12,12 @@ protocol AuthViewModelDelegate: AnyObject {
 }
 
 final class AuthViewModel: NSObject {
-    private struct Credentials {
+    private enum Credentials {
         static let googleSignInClientId = "565708888148-a37kf3ulpe79hsbc5rrkur4p0nh8tg7r.apps.googleusercontent.com"
         static let googleSignInServerClientId = "565708888148-1j57f0ofnk1b0a2gsk23el5v2ec4cuo0.apps.googleusercontent.com"
     }
 
-    private struct GoogleDriveScopes {
+    private enum GoogleDriveScopes {
         static let file = "https://www.googleapis.com/auth/drive.file"
         static let metadata = "https://www.googleapis.com/auth/drive.metadata"
         static let all = [file, metadata]

@@ -12,24 +12,24 @@ import ZippyJSON
 
 //TODO: rewrite using Combine/OpenCombine/RxSwift to avoid shitty callbacks
 final class ApiClient {
-    private struct Methods {
+    private enum Methods {
         static let post = "POST"
     }
 
-    private struct Headers {
+    private enum Headers {
         static let contentType = "Content-Type"
     }
 
-    private struct MediaTypes {
+    private enum MediaTypes {
         static let applicationJson = "application/json"
     }
 
-    private struct Endpoints {
+    private enum Endpoints {
         static let local = "http://192.168.86.41:8080"
         static let heroku = ""
     }
 
-    private struct Paths {
+    private enum Paths {
         static let requestCode = "/v0/auth/requestCode"
         static let signIn = "/v0/auth/signIn"
         static let pass2Fa = "/v0/auth/pass2FA"

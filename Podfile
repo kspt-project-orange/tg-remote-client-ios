@@ -11,5 +11,4 @@ target 'tg-remote-client' do
   pod 'Resolver', '~> 1.1'
   pod 'GoogleSignIn', '~> 5.0'
   pod 'SnapKit', '~> 5.0.0'
-  pod 'libPhoneNumber-iOS', '~> 0.9.15'
 end

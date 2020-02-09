@@ -5,7 +5,7 @@
 
 import UIKit
 
-struct Colors {
+enum Colors {
     static let background: UIColor = {
         if #available(iOS 13.0, *) {
             return UIColor.systemBackground
