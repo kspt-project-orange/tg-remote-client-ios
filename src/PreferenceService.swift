@@ -84,7 +84,7 @@ final class PreferenceService {
         switch T.self {
         case is Bool.Type:
             fallthrough
-        case is String.Type, is (String?).Type:
+        case is String.Type, is String?.Type:
             userDefaults.set(value, forKey: key.rawValue)
         default:
             fatalError()

@@ -8,6 +8,7 @@ import Resolver
 extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
         register { PreferenceService() }
+        register { AuthViewModel.instance }
 
         registerApiDependencies()
         register { ApiClient() }

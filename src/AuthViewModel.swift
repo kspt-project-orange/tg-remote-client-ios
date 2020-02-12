@@ -31,7 +31,7 @@ final class AuthViewModel: NSObject {
 
     weak var delegate: AuthViewModelDelegate?
 
-    static var instance = { AuthViewModel() }()
+    static let instance = { AuthViewModel() }()
 
     private override init() {
         super.init()

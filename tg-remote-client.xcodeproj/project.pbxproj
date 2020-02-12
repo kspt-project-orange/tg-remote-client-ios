@@ -20,7 +20,6 @@
 		C17D60B8AF5E7668488700D6 /* AppDelegate+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D64D36985FFDB8D61D154 /* AppDelegate+Injection.swift */; };
 		C17D60BA1A0E4EA864346AE8 /* Pass2FaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D62A843C8C589396454E3 /* Pass2FaResponse.swift */; };
 		C17D60D7A3C14D250A7296DC /* Pass2FaRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D6A73EEA03CE59B6C4B04 /* Pass2FaRequest.swift */; };
-		C17D65271B7211F5F66D8F0E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D623C25D9F92C5557A8B7 /* String.swift */; };
 		C17D672D32187B51AFB11654 /* RequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D63247FF30C9CD301783A /* RequestBody.swift */; };
 		C17D6798BE7322D10B36B6AB /* ApiClient+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D6C289A0AE115C79B1818 /* ApiClient+Injection.swift */; };
 		C17D67B7ADBD022AE668C2FF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C17D634B01EE4EC240E329CC /* .gitignore */; };
@@ -54,7 +53,6 @@
 		AEC13B0F37BCA21627461872 /* Pods-tg-remote-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tg-remote-client.release.xcconfig"; path = "Target Support Files/Pods-tg-remote-client/Pods-tg-remote-client.release.xcconfig"; sourceTree = "<group>"; };
 		B49F71578E26A23EE83A3DFF /* Pods-tg-remote-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tg-remote-client.debug.xcconfig"; path = "Target Support Files/Pods-tg-remote-client/Pods-tg-remote-client.debug.xcconfig"; sourceTree = "<group>"; };
 		C17D602DF6C4F2AD3D5C734C /* RequestCodeResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCodeResponse.swift; sourceTree = "<group>"; };
-		C17D623C25D9F92C5557A8B7 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C17D62A843C8C589396454E3 /* Pass2FaResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pass2FaResponse.swift; sourceTree = "<group>"; };
 		C17D63247FF30C9CD301783A /* RequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBody.swift; sourceTree = "<group>"; };
 		C17D634B01EE4EC240E329CC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
@@ -113,14 +111,6 @@
 			path = translations;
 			sourceTree = "<group>";
 		};
-		329399BB23C2930800178E25 /* util */ = {
-			isa = PBXGroup;
-			children = (
-				C17D623C25D9F92C5557A8B7 /* String.swift */,
-			);
-			path = util;
-			sourceTree = "<group>";
-		};
 		32AA7D4A23C12DA300078A1B = {
 			isa = PBXGroup;
 			children = (
@@ -144,7 +134,6 @@
 		32AA7D5523C12DA300078A1B /* src */ = {
 			isa = PBXGroup;
 			children = (
-				329399BB23C2930800178E25 /* util */,
 				329399AC23C28CF300178E25 /* AuthViewModel.swift */,
 				329399AB23C28CF200178E25 /* Colors.swift */,
 				325CB64723C151260045179C /* api */,
@@ -351,7 +340,6 @@
 				C17D60D7A3C14D250A7296DC /* Pass2FaRequest.swift in Sources */,
 				C17D60BA1A0E4EA864346AE8 /* Pass2FaResponse.swift in Sources */,
 				C17D68ED8FE1D15326A3E35B /* Errors.swift in Sources */,
-				C17D65271B7211F5F66D8F0E /* String.swift in Sources */,
 				C17D6DF43BCC961FD7201F55 /* AttachDriveRequest.swift in Sources */,
 				C17D6C31D1F2DA451995C5B0 /* AttachDriveResponse.swift in Sources */,
 			);

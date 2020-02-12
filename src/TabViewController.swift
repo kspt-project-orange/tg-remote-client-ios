@@ -14,7 +14,7 @@ import SwifterSwift
 final class TabViewController: UIViewController {
     private lazy var logoutBtn: UIButton = {
         let b = UIButton(type: .system)
-        b.setTitle("LOGOUT".localized, for: .normal)
+        b.setTitle("LOGOUT".localized(), for: .normal)
         b.setTitleColorForAllStates(Colors.text)
         b.addTarget(self, action: #selector(logoutBtnClicked), for: .touchUpInside)
 
