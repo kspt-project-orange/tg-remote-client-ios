@@ -74,7 +74,9 @@ final class ApiClient {
 
                 return promise(.success(url))
             }
-            .zip(Just(body).encode(encoder: encoder))
+            .zip(Just(body)
+                    .encode(encoder: encoder)
+                    .catch { _ in Fail<Data, Error>(error: Errors.badRequest) })
             .map { url, data in
                 URLRequest(url: url).with {
                     $0.httpMethod = Methods.post
