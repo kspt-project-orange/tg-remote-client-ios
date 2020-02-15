@@ -12,73 +12,56 @@ import GoogleSignIn
 import SnapKit
 import SwifterSwift
 import Combine
+import Then
 
 final class AuthViewController: UIViewController {
     @Injected
     private var viewModel: AuthViewModel
 
-    private lazy var text: UILabel = {
-        let l = UILabel()
-        l.backgroundColor = Colors.background
-        l.textAlignment = .center
-        l.textColor = Colors.text
-        l.numberOfLines = 2
+    private lazy var text = UILabel().then {
+        $0.backgroundColor = Colors.background
+        $0.textAlignment = .center
+        $0.textColor = Colors.text
+        $0.numberOfLines = 2
+    }
 
-        return l
-    }()
+    private lazy var input = UITextField().then {
+        $0.isHidden = !([.waitingForPhone, .waitingForCode, .waitingForPassword] as [AuthViewModel.State]).contains(viewModel.state)
+        $0.borderStyle = .roundedRect
+        $0.borderColor = Colors.border
+        $0.delegate = self
+    }
 
-    private lazy var input: UITextField = {
-        let f = UITextField()
-        f.isHidden = !([.waitingForPhone, .waitingForCode, .waitingForPassword] as [AuthViewModel.State]).contains(viewModel.state)
-        f.borderStyle = .roundedRect
-        f.borderColor = Colors.border
-        f.delegate = self
+    private lazy var button = UIButton().then {
+        $0.isHidden = !([.waitingForPhone, .waitingForCode, .waitingForPassword] as [AuthViewModel.State]).contains(viewModel.state)
+        $0.cornerRadius = 8.0
+        $0.setTitle("AUTHORIZATION_BUTTON_NEXT".localized(), for: .normal)
+        $0.setTitleColor(Colors.text, for: .normal)
+        $0.setTitleColor(Colors.text.withAlphaComponent(0.5), for: .highlighted)
+        $0.backgroundColor = Colors.background
+        $0.borderColor = Colors.text
+        $0.borderWidth = 1.0
+        $0.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+    }
 
-        return f
-    }()
+    private lazy var googleSignInButton = GIDSignInButton().then {
+        $0.isHidden = viewModel.state != .waitingForGoogleSignIn
+        $0.style = .wide
+    }
 
-    private lazy var button: UIButton = {
-        let b = UIButton()
-        b.isHidden = !([.waitingForPhone, .waitingForCode, .waitingForPassword] as [AuthViewModel.State]).contains(viewModel.state)
-        b.cornerRadius = 8.0
-        b.setTitle("AUTHORIZATION_BUTTON_NEXT".localized(), for: .normal)
-        b.setTitleColor(Colors.text, for: .normal)
-        b.setTitleColor(Colors.text.withAlphaComponent(0.5), for: .highlighted)
-        b.backgroundColor = Colors.background
-        b.borderColor = Colors.text
-        b.borderWidth = 1.0
-        b.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
+    private lazy var semitransparentView = UIView().then {
+        $0.backgroundColor = Colors.background.withAlphaComponent(0.5)
+        $0.isHidden = true
+        $0.isUserInteractionEnabled = false
+    }
 
-        return b
-    }()
-
-    private lazy var googleSignInButton: GIDSignInButton = {
-        let b = GIDSignInButton()
-        b.isHidden = viewModel.state != .waitingForGoogleSignIn
-        b.style = .wide
-
-        return b
-    }()
-
-    private lazy var semitransparentView: UIView = {
-        let v = UIView()
-        v.backgroundColor = Colors.background.withAlphaComponent(0.5)
-        v.isHidden = true
-        v.isUserInteractionEnabled = false
-
-        return v
-    }()
-
-    private lazy var prefBtn: UIButton = {
-        let b = UIButton(type: .system)
-        b.setTitle("PREF_BUTTON_TITLE".localized(), for: .normal)
-        b.backgroundColor = Colors.background
-        b.titleLabel?.textAlignment = .center
-        b.setTitleColorForAllStates(Colors.text)
-        b.addTarget(self, action: #selector(prefBtnClicked), for: .touchUpInside)
-
-        return b
-    }()
+    private lazy var prefBtn = UIButton(type: .system).then {
+        $0.setTitle("PREF_BUTTON_TITLE".localized(), for: .normal)
+        $0.backgroundColor = Colors.background
+        $0.titleLabel?.textAlignment = .center
+        $0.setTitleColorForAllStates(Colors.text)
+        $0.addTarget(self, action: #selector(prefBtnClicked), for: .touchUpInside)
+    }
 
     init(clean: Bool = false) {
         super.init(nibName: nil, bundle: nil)
