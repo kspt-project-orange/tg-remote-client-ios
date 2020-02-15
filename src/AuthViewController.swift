@@ -11,6 +11,7 @@ import Resolver
 import GoogleSignIn
 import SnapKit
 import SwifterSwift
+import Combine
 
 final class AuthViewController: UIViewController {
     @Injected
@@ -200,11 +201,26 @@ final class AuthViewController: UIViewController {
         input.resignFirstResponder()
         switch viewModel.state {
         case .waitingForPhone:
-            viewModel.sendPhoneNumber(input.text!, completion: updateUIOnSuccess)
+            _ = viewModel
+                    .sendPhoneNumber(input.text!)
+                    .subscribe(on: RunLoop.main)
+                    .sink { [weak self] success in
+                        self?.updateUIOnSuccess(success)
+                    }
         case .waitingForCode:
-            viewModel.sendCode(input.text!, completion: updateUIOnSuccess)
+            _ = viewModel
+                    .sendCode(input.text!)
+                    .subscribe(on: RunLoop.main)
+                    .sink { [weak self] success in
+                        self?.updateUIOnSuccess(success)
+                    }
         case .waitingForPassword:
-            viewModel.sendPassword(input.text!, completion: updateUIOnSuccess)
+            _ = viewModel
+                    .sendPassword(input.text!)
+                    .subscribe(on: RunLoop.main)
+                    .sink { [weak self] success in
+                        self?.updateUIOnSuccess(success)
+                    }
         default:
             break
         }

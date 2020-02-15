@@ -6,6 +6,7 @@
 import Foundation
 import Resolver
 import GoogleSignIn
+import Combine
 
 protocol AuthViewModelDelegate: AnyObject {
     func authViewModel(_ viewModel: AuthViewModel, didAuthorizeSuccessfully successfully: Bool)
@@ -43,36 +44,28 @@ final class AuthViewModel: NSObject {
         GIDSignIn.sharedInstance().delegate = self
     }
 
-    func sendPhoneNumber(_ phone: String, completion: @escaping (Bool) -> Void) {
-        client.requestCode(body: RequestCodeRequest(phone: phone)) { [weak self] result in
-            guard let self = self else { return }
+    func sendPhoneNumber(_ phone: String) -> AnyPublisher<Bool, Never> {
+        client
+            .requestCode(body: RequestCodeRequest(phone: phone))
+            .map { [weak self] response in
+                guard let self = self, response.status == .ok, let token = response.token else { return false }
 
-            switch result {
-            case .success(let response):
-                if response.status == .ok, let token = response.token {
-                    self.state = .waitingForCode
-                    self.preferences.token = token
-                    completion(true)
-                    return
-                }
-                completion(false)
-            case .failure(let error):
-                print(error)
-                completion(false)
+                self.state = .waitingForCode
+                self.preferences.token = token
+                return true
             }
-        }
+            .catch { err -> Just<Bool> in
+                print(err)
+                return Just(false)
+            }
+            .eraseToAnyPublisher()
     }
 
-    func sendCode(_ code: String, completion: @escaping (Bool) -> Void) {
-        client.signIn(body: SignInRequest(token: preferences.token!, code: code)) { [weak self] result in
-            guard let self = self else { return }
-
-            switch result {
-            case .success(let response):
-                if response.status == .error {
-                    completion(false)
-                    return
-                }
+    func sendCode(_ code: String) -> AnyPublisher<Bool, Never> {
+        client
+            .signIn(body: SignInRequest(token: preferences.token!, code: code))
+            .map { [weak self] response in
+                guard let self = self, response.status != .error else { return false }
 
                 if response.status == .ok {
                     self.state = .waitingForGoogleSignIn
@@ -80,32 +73,31 @@ final class AuthViewModel: NSObject {
                 } else if response.status == .tfaRequired {
                     self.state = .waitingForPassword
                 }
-                completion(true)
-            case .failure(let error):
-                print(error)
-                completion(false)
+
+                return true
             }
-        }
+            .catch { err -> Just<Bool> in
+                print(err)
+                return Just(false)
+            }
+            .eraseToAnyPublisher()
     }
 
-    func sendPassword(_ password: String, completion: @escaping (Bool) -> Void) {
-        client.pass2Fa(body: Pass2FaRequest(token: preferences.token!, password: password)) { [weak self] result in
-            guard let self = self else { return }
+    func sendPassword(_ password: String) -> AnyPublisher<Bool, Never> {
+        client
+            .pass2Fa(body: Pass2FaRequest(token: preferences.token!, password: password))
+            .map { [weak self] response in
+                guard let self = self, response.status == .ok else { return false }
 
-            switch result {
-            case .success(let response):
-                if response.status == .ok {
-                    self.state = .waitingForGoogleSignIn
-                    self.preferences.hasTelegramAuthorization = true
-                    completion(true)
-                    return
-                }
-                completion(false)
-            case .failure(let error):
-                print(error)
-                completion(false)
+                self.state = .waitingForGoogleSignIn
+                self.preferences.hasTelegramAuthorization = true
+                return true
             }
-        }
+            .catch { err -> Just<Bool> in
+                print(err)
+                return Just(false)
+            }
+            .eraseToAnyPublisher()
     }
 
     func reset(completion: () -> Void) {
@@ -156,25 +148,26 @@ extension AuthViewModel: GIDSignInDelegate {
             return
         }
 
-        client.attachDrive(body: AttachDriveRequest(token: preferences.token!,
-                                                    driveIdToken: preferences.googleIdToken!,
-                                                    driveServerAuthCode: preferences.googleServerAuthCode!)) { [weak self] result in
-            guard let self = self else { return }
+        _ = client
+                .attachDrive(body: AttachDriveRequest(
+                    token: preferences.token!,
+                    driveIdToken: preferences.googleIdToken!,
+                    driveServerAuthCode: preferences.googleServerAuthCode!
+                ))
+                .map { [weak self] response in
+                    guard let self = self, response.status == .ok else { return false }
 
-            switch result {
-            case .success(let response):
-                switch response.status {
-                case .ok:
                     self.state = .authorized
                     self.preferences.hasGoogleDriveAuthorization = true
-                    self.delegate?.authViewModel(self, didAuthorizeSuccessfully: true)
-                default:
-                    self.delegate?.authViewModel(self, didAuthorizeSuccessfully: false)
+                    return true
                 }
-            case .failure(let error):
-                self.delegate?.authViewModel(self, didAuthorizeSuccessfully: false)
-                print(error)
-            }
-        }
+                .catch { err -> Just<Bool> in
+                    print(err)
+                    return Just(false)
+                }
+                .subscribe(on: RunLoop.main)
+                .sink { [weak self] success in
+                    self?.delegate?.authViewModel(self!, didAuthorizeSuccessfully: success)
+                }
     }
 }

@@ -9,8 +9,9 @@
 import Foundation
 import Resolver
 import ZippyJSON
+import Combine
+import Then
 
-//TODO: rewrite using Combine/OpenCombine/RxSwift to avoid shitty callbacks
 final class ApiClient {
     private enum Methods {
         static let post = "POST"
@@ -49,49 +50,45 @@ final class ApiClient {
         preferences.serverUrl ?? Endpoints.local
     }
 
-    func requestCode(body: RequestCodeRequest, completion: @escaping (Result<RequestCodeResponse, Error>) -> Void) {
-        postMethod(withPath: Paths.requestCode, body: body, completion: completion)
+    func requestCode(body: RequestCodeRequest) -> AnyPublisher<RequestCodeResponse, Error> {
+        postMethod(withPath: Paths.requestCode, body: body)
     }
 
-    func signIn(body: SignInRequest, completion: @escaping (Result<SignInResponse, Error>) -> Void) {
-        postMethod(withPath: Paths.signIn, body: body, completion: completion)
+    func signIn(body: SignInRequest) -> AnyPublisher<SignInResponse, Error> {
+        postMethod(withPath: Paths.signIn, body: body)
     }
 
-    func pass2Fa(body: Pass2FaRequest, completion: @escaping (Result<Pass2FaResponse, Error>) -> Void) {
-        postMethod(withPath: Paths.pass2Fa, body: body, completion: completion)
+    func pass2Fa(body: Pass2FaRequest) -> AnyPublisher<Pass2FaResponse, Error> {
+        postMethod(withPath: Paths.pass2Fa, body: body)
     }
 
-    func attachDrive(body: AttachDriveRequest, completion: @escaping (Result<AttachDriveResponse, Error>) -> Void) {
-        postMethod(withPath: Paths.attachDrive, body: body, completion: completion)
+    func attachDrive(body: AttachDriveRequest) -> AnyPublisher<AttachDriveResponse, Error> {
+        postMethod(withPath: Paths.attachDrive, body: body)
     }
 
-    private func postMethod<Req: RequestBody, Resp: ResponseBody>(withPath path: String, body: Req, completion: @escaping (Result<Resp, Error>) -> Void) {
-        guard let url = URL(string: endpoint + path),
-              let data = try? encoder.encode(body) else {
-            completion(.failure(Errors.badRequest))
-            return
-        }
+    private func postMethod<Req: RequestBody, Resp: ResponseBody>(withPath path: String, body: Req) -> AnyPublisher<Resp, Error> {
+        Future<URL, Error> { [endpoint] promise in
+                guard let url = URL(string: endpoint + path) else {
+                    return promise(.failure(Errors.badRequest))
+                }
 
-        var request = URLRequest(url: url)
-        request.httpMethod = Methods.post
-        request.httpBody = data
-        request.setValue(MediaTypes.applicationJson, forHTTPHeaderField: Headers.contentType)
-
-        session.dataTask(with: request) { [unowned self] (data: Data?, response: URLResponse?, error: Error?) -> Void in
-            if let error = error {
-                completion(.failure(error))
-                return
+                return promise(.success(url))
             }
-
-            guard let code = (response as? HTTPURLResponse)?.statusCode, code.isAccepted,
-                  let data = data,
-                  let responseBody = try? self.decoder.decode(Resp.self, from: data) else {
-                completion(.failure(Errors.badResponse))
-                return
+            .zip(Just(body).encode(encoder: encoder))
+            .map { url, data in
+                URLRequest(url: url).with {
+                    $0.httpMethod = Methods.post
+                    $0.httpBody = data
+                    $0.setValue(MediaTypes.applicationJson, forHTTPHeaderField: Headers.contentType)
+                }
             }
-
-            completion(.success(responseBody))
-        }.resume()
+            .flatMap { [session, decoder] request in
+                session.dataTaskPublisher(for: request)
+                        .map { $0.data }
+                        .decode(type: Resp.self, decoder: decoder)
+                        .catch { _ in Fail<Resp, Error>(error: Errors.badResponse) }
+            }
+            .eraseToAnyPublisher()
     }
 }
 
